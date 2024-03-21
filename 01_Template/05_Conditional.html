@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="step01">
+
+    </div>
+
+    <script>
+        /* 
+            let createApp = Vue.createApp;
+            let ref = Vue.ref;
+        */
+        const {createApp, ref} = Vue;
+        createApp({
+            setup() {
+                const state = ref(true);
+                function setState() {
+                    state.value =!state.value;
+                }
+                return {
+                    state,
+                    setState
+                }
+            }
+        }).mount('#step01');
+
+    </script>
+</body>
+</html>
