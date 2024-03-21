@@ -22,7 +22,12 @@
 </head>
 <body>
     <div id="step01">
-        <div :class=""></div>
+        <!-- isActive와 isSize라는 반응형 변수를 조절해 클래스명을 부여 또는 회수할 수 있다. -->
+        <div :class="{active: isActive, static: isSize}"><h2>{{isActive}}</h2></div>
+    </div>
+
+    <div id="step02">
+        <div :class="classObj">{{classObj}}</div>
     </div>
 
     <script>
@@ -31,7 +36,7 @@
         createApp({
             setup() {
                 const isActive = ref(true);
-                const isSize = ref(true);
+                const isSize = ref(false);  // static에 영향
 
                 return {
                     isActive,
@@ -39,6 +44,23 @@
                 }
             }
         }).mount('#step01');
+
+        /* composition API(컴포지션 api)는 view 인스턴스를 반환하며 View Model에 해당된다. */
+        createApp({ 
+            setup() {
+                const isActive = ref(true);
+                const isSize = ref(true);
+
+                const classObj = reactive({
+                    active: isActive,
+                    static: isSize
+                })
+
+                return {
+                    classObj
+                }
+            }
+        }).mount('#step02');
     </script>
 </body>
 </html>
