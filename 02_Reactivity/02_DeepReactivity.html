@@ -23,9 +23,21 @@
 
         createApp({
             setup() {
+                const fruits = ref([{name: 'Banana', price: 100}, {name: 'Mango', price: 500}, {name: 'Melon', price: 700}]);
+                const selectedFruit = ref({name: "Banana", price: 100});
+                const basket = ref([]);
+                const totalPrice = ref(0);
 
+                const addProduct = (product) => {
+                    basket.value.push(product.name);
+                    totalPrice.value += product.price;
+                }
                 return {
-
+                    fruits,
+                    basket,
+                    totalPrice,
+                    selectedFruit,
+                    addProduct
                 }
             }
         }).mount('#step01');
