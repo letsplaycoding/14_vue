@@ -28,7 +28,7 @@
     </div>
 
     <script>
-        const {createApp, ref} = Vue;
+        const {createApp, ref, reactive} = Vue;
 
         createApp({
             setup() {
@@ -38,6 +38,19 @@
                 }
             }
         }).mount('#step01');
+
+        createApp({
+            setup() {
+                const profile = reactive({
+                    name: '신동호',
+                    address: '고양시 일산서구',
+                    introduction: '주인공'
+                })
+                return {
+                    profile
+                }
+            }
+        }).mount('#step02');
     </script>
 </body>
 </html>
