@@ -27,6 +27,19 @@
         </li>
     </div>
 
+    <!-- 
+        data 없이 범위만 있는 loop 렌더링
+        (필요한 데이터는 없지만 지시자가 적용되려면 뷰모델이 필요하다)
+    -->
+
+    <div id="step03">
+        <li v-for="n in 10">{{n}}</li>
+    </div>
+
+    <div id="step04">
+        <li v-for="item in items" v-if="item.state">{{item}}</li>
+    </div>
+
     <script>
         const {createApp, ref, reactive} = Vue;
 
@@ -51,6 +64,15 @@
                 }
             }
         }).mount('#step02');
+
+        createApp({
+            setup() {
+                
+                return {
+                    
+                }
+            }
+        }).mount('#step03');
     </script>
 </body>
 </html>
