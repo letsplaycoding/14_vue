@@ -38,7 +38,11 @@
     </div>
 
     <!-- 
+        v-if & v-else-if & v-else
+        if 조건부로 블록을 렌더링 하는데 지시자의 식이 참인 경우 if 블록을 렌더링하게 된다.
+        그러나 if블록의 지시자의 식이 참이 아닌 경우 else 블록이 렌더링 된다.
 
+        항상 if와 연관있는 곳에 배치해야한다.
     -->
     <div id="step03">
         <h1 v-if="awesome == 'awesome'">Vue is awesome</h1>
