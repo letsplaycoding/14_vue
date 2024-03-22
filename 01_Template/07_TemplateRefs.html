@@ -8,9 +8,22 @@
 </head>
 <body>
     <div id="step01">
+        <!-- v-model => 양방향 Binding -->
         <label>name: </label><input type="text" ref="nameBox" v-model="name">
         <br>
         <label>입력한 이름: {{name}}</label>
     </div>
+
+    <script>
+        const {createApp, ref} = Vue;
+        createApp({
+            setup() {
+                const name = ref('');
+                return {
+                    name
+                }
+            }
+        }).mount('#step01');
+    </script>
 </body>
 </html>
