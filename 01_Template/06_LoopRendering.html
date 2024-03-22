@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        v-for
+        배열을 기준으로 항목 목록을 렌더링하는 지시문(directive)이다.
+    -->
+    <div id="step01">
+        <h5>과일가게</h5>
+        <!-- ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ -->
+        <li v-for="item in items">{{item}}</li>
+    </div>
+
+    <div id="step02">
+        <li v-for="info in profile">
+            {{info}}
+        </li>
+        <br>
+        <li v-for="(value,key,index) in profile">
+            {{index}}:{{key}}:{{value}}
+        </li>
+    </div>
+
+    <script>
+        const {createApp, ref} = Vue;
+
+        createApp({
+            setup() {
+                const items = ref(['Apple', 'Mango', 'Melon', 'Watermelon']);
+                return {
+                    items
+                }
+            }
+        }).mount('#step01');
+    </script>
+</body>
+</html>
