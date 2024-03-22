@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="step01">
+
+    </div>
+
+    <script>
+        const {createApp, ref} = Vue;
+
+        createApp({
+            setup() {
+                
+                return {
+
+                }
+            },
+            beforeCreate() {
+                console.log('컴포넌트 인스턴스 생성전');
+            },
+
+            created() {
+                console.log('컴포넌트 생성 후 초기 데이터 설정');
+            },
+            beforeMount() {
+                console.log('로딩 완료 DOM에 추가');
+            },
+            mounted() {
+                console.log('마운트 완료');
+            },
+            beforeUpdate() {
+                console.log('컴포넌트가 업데이트되기 전');
+            },
+            updated() {
+                console.log('컴포넌트 렌더링이 완료');
+            }
+
+        }).mount('#step01');
+    </script>
+</body>
+</html>
