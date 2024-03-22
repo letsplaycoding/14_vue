@@ -18,10 +18,14 @@
         const {createApp, ref} = Vue;
         createApp({
             setup() {
-                const name = ref('');
+                const name = ref('산토끼토끼야어디를가느냐깡충깡충뛰면서면역에서술한잔했어요구르트아줌마요구르트주세요요구르트없으면야쿠르트주세요.');
                 return {
                     name
                 }
+            },
+            mounted() {
+                console.log(this.$refs.nameBox);
+                this.$refs.nameBox.focus();
             }
         }).mount('#step01');
     </script>
