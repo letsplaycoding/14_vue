@@ -21,6 +21,7 @@
         -->
         <select v-model="selectedFruit">
             <option v-for="fruit in fruits" :value="fruit">{{fruit.name}}</option>
+            
         </select>
         <button @click="addProduct(selectedFruit)">상품 추가</button>
         <hr>

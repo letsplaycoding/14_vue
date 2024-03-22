@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        div {
+            border: 1px solid black;
+            padding: 5px;
+        }
+
+        .custom-input input {
+            width: 200px;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        v-model    
+    -->
+    <div id="step02">
+        <div>
+            <h4>name: {{name}}</h4>
+            <h4>address: {{address}}</h4>
+            <h4>age: {{age}}</h4>
+            <h4>introduce: {{introduce}}</h4>
+        </div>
+        <label>이름: </label><input type="text" v-model="name">
+        <br>
+        <label>주소: </label><input type="text" v-model="address">
+
+    </div>
+</body>
+</html>
