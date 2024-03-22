@@ -9,6 +9,22 @@
 <body>
     <div id="step01"></div>
 
+    <div id="step02">
+        <div>{{num}}</div>
+        <button @click="notification('test')">알림</button>
+    </div>
+
+    <div id="step03">
+        <button @keyup.enter="warn('이벤트 유형', $event)">$event1</button>
+        <button @keyup.enter="warn('이벤트 유형', $event)">$event2</button>
+    </div>
+
+    <div id="step04">
+        <div>
+            <a href="https://www.naver.com"></a>
+        </div>
+    </div>
+
     <script>
         const {createApp, ref} = Vue;
 
@@ -24,6 +40,33 @@
                 <button @click="count++">count++</button>
                 `
         }).mount('#step01');
+
+        createApp({
+            setup() {
+                const num = ref(0);
+
+                function notification(name) {
+                    num.value++;
+                    alert(`${name}: ${num.value}개 입니다.`);
+                }
+                return {
+                    num,
+                    notification
+                }
+            }
+        }).mount('#step02');
+
+        createApp({
+            setup() {
+                function warn(message, event) {
+                    // alert(message + ': ' + event);
+                    console.log(event.srcElement);
+                }
+                return {
+                    warn
+                }
+            }
+        }).mount('#step03');
     </script>
 </body>
 </html>
