@@ -93,6 +93,16 @@
                 <button @click="nextPage" class="btn">next</button>
             </div>
 
+            <!-- 나중에 추가할 부분1 -->
+            <div v-if="likes.length">
+                <div>
+                    <p>내가 좋아하는 총 와인 id들: {{likes}}</p>
+
+                    <!-- 나중에 추가할 부분2 -->
+                    <button @click="toggleViewingState">{{ viewingState ? '쇼핑하기': '쇼핑완료' }}</button>
+                </div>
+            </div>
+
             <div class="appContainer">
 
                 <!-- 쇼핑하기 -->
@@ -101,7 +111,7 @@
                         <p>{{ wine.wine }}</p>
                         <img alt="wine image" class="image" :src="wine.image"/>
 
-                        <!-- 나중에 추가할 부분 -->
+                        <!-- 나중에 추가할 부분 1-->
                         <button v-if="!likes.includes(wine.id)" @click="likeWine(wine.id)">like</button>
                         <button v-if="likes.includes(wine.id)" @click="hateWine(wine.id)">hate</button>
                     </div>
@@ -109,7 +119,11 @@
 
                 <!-- 쇼핑 완료 -->
                 <template v-else>
-
+                    <!-- 나중에 추가할 부분2 -->
+                    <div class="wine-card" v-for="wine in totalLikes" :key="wine.id">
+                        <p>{{wine.wine}}</p>
+                        <img class="image" :src="wine.image" alt="wine image"/>
+                    </div>
                 </template>
             </div>
         </template>
@@ -129,7 +143,8 @@
                 index: 0,               // 한 페이지의 첫 와인 시작 인덱스 값
                 next: 10,               // 다음 페이지의 첫 와인 시작 인덱스 값(next - 1: 한 페이지의 마지막 와인 인덱스 값)
                 viewingState: false,    // 쇼핑 완료 버튼을 누르기 전(와인 목록 보기)과 후(고른 와인들만 보기)를 구분하기 위한 상태값
-                likes: [],              // 좋아요 누른 wine 목록(와인의 id값만 관리)
+                likes: [],              // 좋아요 한 wine 목록(와인의 id값만 관리)
+                totalLikes: []          // 좋아요 한 wine 목록(wine 정보 전체)
             });
 
             const goBack = () => {
@@ -172,6 +187,15 @@
                 }
             }
 
+            const toggleViewingState = () => {
+                state.viewingState =!state.viewingState;
+                if(state.viewingState) {
+
+                    /* 전체 와인에서 likes에 담긴 와인의 id와 일치하는 와인들만(좋아요 한 와인들) 추려내어 totalLikes에 담기 */
+                    state.totalLikes = state.wines.filter(wine => state.likes.includes(wine.id));
+                }
+            }
+
             /* 우리가 만든 컴포넌트가 화면에 mount 되고 나서(vue 3 버전의 setup 방식) */
             onMounted(async () => {
                 await fetchWines(); // api 서버로부터 wine 정보를 불러오는 비동기 통신
@@ -180,7 +204,7 @@
             });
 
             // return {loadingState: true};
-            return {...toRefs(state), goBack, nextPage};  // 객체 축약 문법
+            return {...toRefs(state), goBack, nextPage, likeWine, hateWine, toggleViewingState};  // 객체 축약 문법
 
             /*
                 toRefs:
@@ -192,10 +216,10 @@
         createApp({
             setup() {
                 console.log(useWines);
-                const {loadingState, isMounted, wines, pageWine, index, next, viewingState, goBack, nextPage, likes} = useWines();        // 객체 구조 분해 할당
+                const {loadingState, isMounted, wines, pageWine, index, next, viewingState, goBack, nextPage, likes, likeWine, hateWine, totalLikes, toggleViewingState} = useWines();        // 객체 구조 분해 할당
                 // const loadingState = useWines().loadingState;
                 return {
-                    loadingState, isMounted, wines, pageWine, index, next, viewingState, goBack, nextPage, likes
+                    loadingState, isMounted, wines, pageWine, index, next, viewingState, goBack, nextPage, likes, likeWine, hateWine, totalLikes,toggleViewingState
                 }
             }
         }).mount('#app');
