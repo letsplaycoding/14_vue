@@ -158,13 +158,18 @@
             }
 
             const likeWine = (id) => {
-                if(!state.likes.includes(id)) {
+                if(!state.likes.includes(id)) {         // 기존 likes 배열에 없는 wine이 넘어왔을 때만
                 state.likes.push(id);
                 }
             }
 
             const hateWine = (id) => {
+                const index = state.likes.indexOf(id);  // hate한 wine이 넘어오면 기존 likes에서 찾아서 해당 인덱스 반환
+                if(index > -1) {                        // 기존에 likes에 존재할 때만
 
+                    /* filter는 콜백함수가 반환하는 값이 true인 것들만 추려내어 다시 배열을 만들어 반환 */
+                    state.likes = state.likes.filter((item)=> {item !== id});
+                }
             }
 
             /* 우리가 만든 컴포넌트가 화면에 mount 되고 나서(vue 3 버전의 setup 방식) */
