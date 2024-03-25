@@ -74,10 +74,28 @@
             로딩 중입니다...
         </div>
         <template v-else>
+            <h1 :class="{'neon': isMounted}">인생 와인</h1>
 
+            <div class="btn-group">
+                <button class="btn">back</button>
+                <button class="btn">next</button>
+            </div>
+
+            <div class="appContainer">
+                <!-- 쇼핑하기 -->
+                <template v-if="!viewingState">
+                    <div class="wine-card" v-for="wine on pageWine" :key="wine.id">
+                        <p>{{wine.wine}}</p>
+                        <img class="image" :src="wine.image" alt="wine image"/>
+                    </div>
+                </template>
+                <!-- 쇼핑완료 -->
+                <template v-else>
+
+                </template>
+            </div>
         </template>
     </div>
-
     <script>
         const {createApp, reactive,onMounted, toRefs} = Vue;
 
@@ -85,23 +103,28 @@
         const useWines = () => {
             const state = reactive({
                 loadingState: true,     // 로딩 상태 토글을 위한 상태값
-                isMounted: false,       // 마운트 상태를 관리할 상태값
+                isMounted: false,       // 마운트 상태를 관리할 상태값(인생 와인에 css적용시 활용될 예정)
                 wines: [],              // 비동기 통신으로 불러온 와인 데이터를 담을 상태값
                 pageWine: [],           // 한 페이지에 그려질 와인 데이터를 담을 상태값
                 index: 0,               // 한 페이지의 첫 와인 시작 인덱스값
                 next: 10,               // 다음 페이지의 시작 인덱스값(next -1: 한 페이지의 마지막 와인 인덱스값)
+                viewingState: false     // 쇼핑 완료 버튼을 누르기 전(와인 목록 보기)과 후(고른 와인들마 보기)를 구분하기 위한 상태값
             });
 
             const fetchWines = async () => {
                 const response = await fetch("https://api.sampleapis.com/wines/reds");
                 const data = await response.json();
-                console.log(data);
+                // console.log(data);
+                state.wines = data;
+                state.pageWine = data.slice(state.index, state.next);          // index부터 (next -1)까지 범위의 와인 배열 반환     
+                state.loadingState = false;
             }
 
             /* 우리가 만든 컴포넌트가 화면에 mount 되고 나서 */
             onMounted(async () => {
                 // console.log('mount 이후 시점 실행')
                 await fetchWines();     // api 서버로부터 wine정보를 불러오는 비동기 통신
+                state.isMounted = true;
             })
 
             // return {loadingState: true};
@@ -116,10 +139,15 @@
         createApp({
             setup() {
                 console.log(useWines);
-                const {loadingState} = newWines();      // 객체 구조 분해 할당
+                const {loadingState, isMounted, wines, pageWine,index,next} = newWines();      // 객체 구조 분해 할당
                 // const loadingState = useWines().loadingState; 
                 return {
-                    loadingState
+                    loadingState,
+                    isMounted,
+                    wines,
+                    pageWine,
+                    index,
+                    next
                 }
             }
         }).mount('app');
