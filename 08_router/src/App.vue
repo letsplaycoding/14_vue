@@ -11,6 +11,7 @@
       <h2>basic router</h2>
       <nav>
         <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/pathvariable">PathVariable</RouterLink>
       </nav>
     </div>
   </header>
