@@ -1,7 +1,10 @@
 <script setup>
   import { RouterLink, RouterView } from 'vue-router';
-
 </script>
+
+<!-- 
+  npm install vue-router@next
+-->
 
 <template>
   <header>
