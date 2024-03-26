@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div :class="{container:true, dark:darkState}">
         props 입력: <input v-model="message"/>
         <PropsChild :message="message"/>
         <DarkMode @toggle="toggleDarkMode"/>
@@ -12,6 +12,11 @@
     import DarkMode from './DarkMode.vue';
 
     const message = ref('Good Game.');
+    const darkState = ref(false);
+
+    function toggleDarkMode() {
+        darkState.value =!darkState.value;
+    }
 </script>
 
 <style scoped>
@@ -22,7 +27,7 @@
         align-items: center;
     }
 
-    .dart {
+    .dark {
         background-color: black;
         color: white;
     }
