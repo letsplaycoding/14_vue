@@ -12,7 +12,7 @@ const router = createRouter({
             component: HomeView
         },
         {
-            path: '/pathvariable',
+            path: '/pathvariable/:id',
             component: PathVariable
         },
         {

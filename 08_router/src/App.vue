@@ -27,8 +27,8 @@
       <h2>basic router</h2>
       <nav>
         <RouterLink to="/" active-class="active" replace>Home</RouterLink>
-        <RouterLink to="/pathvariable">PathVariable</RouterLink>
-        <RouterLink to="/querystring">QueryString</RouterLink>
+        <RouterLink to="/pathvariable/1" active-class="active">PathVariable</RouterLink>
+        <RouterLink to="/querystring?name=신동호&age=14" active-class="active">QueryString</RouterLink>
       </nav>
     </div>
   </header>
@@ -52,7 +52,7 @@ a {
 }
 
 .active {
-  color: red;
+  color: yellow;
 }
 
 main {
