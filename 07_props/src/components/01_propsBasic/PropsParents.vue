@@ -1,11 +1,14 @@
 <template>
     <div>
         props 입력: <input v-model="message"/>
+        <PropsChild :message="message"/>
     </div>
 </template>
 
 <script setup>
     import { ref } from 'vue'
+    import PropsChild from './PropsChild.vue';
+
     const message = ref('Good Game.');
 </script>
 
