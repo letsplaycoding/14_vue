@@ -9,6 +9,7 @@
 <script setup>
     import { ref } from 'vue'
     import PropsChild from './PropsChild.vue';
+    import DarkMode from './DarkMode.vue';
 
     const message = ref('Good Game.');
 </script>
