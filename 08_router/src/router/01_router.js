@@ -14,6 +14,7 @@ const router = createRouter({
         {
             path: '/pathvariable/:id',
             component: PathVariable
+            // component: () => import('../views/01_router/PathVariable.vue')
         },
         {
             path: '/querystring',
