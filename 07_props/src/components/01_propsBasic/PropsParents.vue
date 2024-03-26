@@ -3,6 +3,8 @@
         props 입력: <input v-model="message"/>
         <PropsChild :message="message"/>
         <DarkMode @toggle="toggleDarkMode"/>
+        <ReadProps :readValue="readValue"/>
+        부모의 readValue: <input v-model="readValue"/>
     </div>
 </template>
 
@@ -18,9 +20,11 @@
     import { ref } from 'vue'
     import PropsChild from './PropsChild.vue';
     import DarkMode from './DarkMode.vue';
+    import ReadProps from './ReadProps.vue';
 
     const message = ref('Good Game.');
     const darkState = ref(false);
+    const readValue = ref('vue는.........................');
 
     function toggleDarkMode() {
         darkState.value =!darkState.value;
