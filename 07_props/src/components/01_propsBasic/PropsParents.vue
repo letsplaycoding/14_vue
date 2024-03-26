@@ -2,6 +2,7 @@
     <div>
         props 입력: <input v-model="message"/>
         <PropsChild :message="message"/>
+        <DarkMode @toggle="toggleDarkMode"/>
     </div>
 </template>
 
