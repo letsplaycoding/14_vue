@@ -34,7 +34,7 @@
       <h2>nested router</h2>
       <nav>
         <RouterLink to="/" active-class="active">Home</RouterLink>
-        <RouterLink to="/nested" active-class="active">중첩 인덱스</RouterLink>
+        <RouterLink to="/home" active-class="active">중첩 인덱스</RouterLink>
         <RouterLink to="/nested/view" active-class="active">중첩 라우터</RouterLink>
       </nav>
     </div>
